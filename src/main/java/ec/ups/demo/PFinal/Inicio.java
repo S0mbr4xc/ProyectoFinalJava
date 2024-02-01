@@ -13,10 +13,10 @@ import jakarta.annotation.Resource;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 
-@Singleton
-@Startup
+//@Singleton
+//@Startup
 public class Inicio {
-		@Resource(lookup = "java:/MySqlDS")
+		/*@Resource(lookup = "java:/MySqlDS")
 	    private DataSource dataSource;
 
 	    @PostConstruct
@@ -56,7 +56,7 @@ public class Inicio {
 	                                  id, nombre, apellido, edad, direccion, email);
 	            }
 	        }
-	    }
+	    }*/
 	    
 	    
 }
