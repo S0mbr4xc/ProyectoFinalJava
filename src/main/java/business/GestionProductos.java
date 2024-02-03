@@ -40,4 +40,5 @@ public class GestionProductos {
 		return productoDAO.getAll();
 		
 	}
+	
 }

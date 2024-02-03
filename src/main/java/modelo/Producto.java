@@ -28,8 +28,8 @@ public class Producto implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "categoria_id", nullable = true)
 	private Categoria categoria;
-	
-
+	private String url;
+	private String descripcion;
 	
 	public int getCodigo() {
 		return codigo;
@@ -67,9 +67,23 @@ public class Producto implements Serializable{
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getUrl() {
+		return url;
 	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+	
+
+	
+	
 	
 	
 	

@@ -41,4 +41,13 @@ public class GestionPersonas {
 		
 	}
 	
+	public Persona autenticarPersona(String correo, String contra) throws Exception{
+		Persona persona = personaDAO.obtenerPorCorreo(correo);
+		if (persona != null && persona.getContra().equals(contra)) {
+			return persona;
+		}else {
+			throw new Exception("Las credenciales no coinciden");
+		}
+	}
+	
 }

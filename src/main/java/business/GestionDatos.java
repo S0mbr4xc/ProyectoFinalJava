@@ -61,20 +61,92 @@ public class GestionDatos {
 		 persona.setDireccion("El Arenal");
 		 persona.setTelefono("0994030867");
 		 persona.setCorreo("eduardomaldonado2003ortiz");
+		 persona.setContra("jiji");
 		 personaDAO.insert(persona);
 		 
 		 Categoria categoria = new Categoria();
-		 categoria.setNombre("Tarjetas Graficas");
+		 categoria.setNombre("PC Gamer");
 		 categoriaDAO.insert(categoria);
+		 
+		 Categoria categoria2 = new Categoria();
+		 categoria2.setNombre("Articulos de Belleza");
+		 categoriaDAO.insert(categoria2);
+		 
+		 Categoria categoria3 = new Categoria();
+		 categoria3.setNombre("Celulares");
+		 categoriaDAO.insert(categoria3);
+		 
+		 Categoria categoria4 = new Categoria();
+		 categoria4.setNombre("Linea Blanca");
+		 categoriaDAO.insert(categoria4);
+		 
+		 Categoria categoria5 = new Categoria();
+		 categoria5.setNombre("Ropa");
+		 categoriaDAO.insert(categoria5);
+		 
+		 Categoria categoria6 = new Categoria();
+		 categoria6.setNombre("Libros");
+		 categoriaDAO.insert(categoria6);
 		 
 		 Producto producto = new Producto();
 		 producto.setNombre("RTX 3080");
 		 producto.setPrecio(100.0);
 		 producto.setStock(5);
 		 producto.setCodeBarras("010203");
+		 producto.setUrl("https://th.bing.com/th/id/OIP.o4FDR9jMpahxfSa3-9l4FAHaDn?w=315&h=180&c=7&r=0&o=5&pid=1.7");
+		 producto.setDescripcion("The GeForce RTX 3080 delivers the ultra-performance that gamers crave, powered by Ampere—NVIDIA's 2nd gen .");
 		 producto.setCategoria(categoria);
 		 productoDAO.insert(producto);
 		 
+		 Producto producto2 = new Producto();
+		 producto2.setNombre("Serum");
+		 producto2.setPrecio(10.0);
+		 producto2.setStock(10);
+		 producto2.setCodeBarras("010101");
+		 producto2.setUrl("https://th.bing.com/th/id/OIP.AysL-rn6B8EWv2BkCTDBfAHaIa?w=190&h=216&c=7&r=0&o=5&pid=1.7");
+		 producto2.setDescripcion("La palabra sérum, deriva de la palabra serum en inglés, que significa suero. Y es un concentrado de ingredientes activos, el cual se ha convertido en el complemento perfecto a nuestra rutina de belleza diaria.");
+		 producto2.setCategoria(categoria2);
+		 productoDAO.insert(producto2);
+		 
+		 Producto producto3 = new Producto();
+		 producto3.setNombre("Iphone 14");
+		 producto3.setPrecio(1000.0);
+		 producto3.setStock(5);
+		 producto3.setCodeBarras("010102");
+		 producto3.setUrl("https://th.bing.com/th/id/OIP.BBjeLwCpYb22yGXbVwO6ugHaHa?w=185&h=184&c=7&r=0&o=5&pid=1.7");
+		 producto3.setDescripcion("El iPhone 14 cuenta con sistemas GSM, CDMA, HSPA, EVDO, LTE, 5G1. La fecha de presentación es Septiembre 07 2022");
+		 producto3.setCategoria(categoria3);
+		 productoDAO.insert(producto3);
+		 
+		 Producto producto4 = new Producto();
+		 producto4.setNombre("Cocina");
+		 producto4.setPrecio(600.0);
+		 producto4.setStock(5);
+		 producto4.setCodeBarras("010103");
+		 producto4.setUrl("https://th.bing.com/th/id/OIP.A90vvrmKvPlt_1kIE7b-VQHaHa?w=201&h=201&c=7&r=0&o=5&pid=1.7");
+		 producto4.setDescripcion("la cocina es el sitio en el cual se prepara la comida. Puede ser el ambiente dedicado a esa tarea en un hogar o el espacio específico en un restaurante,");
+		 producto4.setCategoria(categoria4);
+		 productoDAO.insert(producto4);
+		 
+		 Producto producto5 = new Producto();
+		 producto5.setNombre("Zapatos ADODAS");
+		 producto5.setPrecio(50.0);
+		 producto5.setStock(50);
+		 producto5.setCodeBarras("010204");
+		 producto5.setUrl("https://th.bing.com/th/id/OIP.exvsscV6FWlr-TjFuvyp-QHaFu?w=242&h=186&c=7&r=0&o=5&pid=1.7");
+		 producto5.setDescripcion("Zapato es un término que proviene de zabata, un vocablo de la lengua turca. Un zapato es una pieza de calzado que protege al pie, brindándole comodidad a la persona");
+		 producto5.setCategoria(categoria5);
+		 productoDAO.insert(producto5);
+		 
+		 Producto producto6 = new Producto();
+		 producto6.setNombre("Clean Code");
+		 producto6.setPrecio(10.0);
+		 producto6.setStock(10);
+		 producto6.setCodeBarras("010205");
+		 producto6.setDescripcion("Lo más sencillo posible: KISS KISS (del inglés keep it simple, stupid o “que sea sencillo, estúpido”) es uno de los principios del código limpio más antiguos, que ya utilizaba el ejército estadounidense en la década de 1960");
+		 producto6.setUrl("https://th.bing.com/th/id/R.2aca70dfbdcef936cb99c63497be7dd3?rik=D04BpW2HTTDPCQ&riu=http%3a%2f%2fbilder.buecher.de%2fprodukte%2f23%2f23888%2f23888404z.jpg&ehk=LGJoVKaZqoLi7Tsi1CLbsBesvJaHELADizXLRyjdXlA%3d&risl=&pid=ImgRaw&r=0");
+		 producto6.setCategoria(categoria6);
+		 productoDAO.insert(producto6);
 		 
 		 
 		 Cabecera cabecera = new Cabecera();

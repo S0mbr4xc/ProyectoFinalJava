@@ -29,8 +29,8 @@ public class Persona implements Serializable{
 	private String telefono;
 	@Column(name="correo", length = 50, nullable = false)
 	private String correo;
-	
-	
+	@Column(name="contra", length = 60, nullable = false)
+	private String contra;
 	public int getCodigo() {
 		return codigo;
 	}
@@ -73,8 +73,11 @@ public class Persona implements Serializable{
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getContra() {
+		return contra;
+	}
+	public void setContra(String contra) {
+		this.contra = contra;
 	}
 	
 	

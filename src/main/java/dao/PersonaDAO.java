@@ -36,4 +36,13 @@ public class PersonaDAO {
 		Query q = em.createQuery(jpql, Persona.class);
 		return q.getResultList();
 	}
+	
+	public Persona obtenerPorCorreo(String correo) {
+		String jpql = "SELECT p FROM Persona p WHERE p.correo = :correo";
+		Query q = em.createQuery(jpql, Persona.class);
+		q.setParameter("correo", correo);
+		
+		List<Persona> resultados = q.getResultList();
+		return resultados.isEmpty() ? null : resultados.get(0);
+	}
 }
