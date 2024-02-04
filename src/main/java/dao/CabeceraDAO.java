@@ -14,10 +14,14 @@ public class CabeceraDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
-	public void insert(Cabecera cabecera) {
-		em.persist(cabecera);
-	}
-	
+	 public void insert(Cabecera cabecera) {
+	        
+	        if (cabecera.getDetalle() != null) {
+	            cabecera.getDetalle().forEach(detalle -> detalle.setCabecera(cabecera));
+	        }
+
+	        em.persist(cabecera);
+	    }
 	public void update(Cabecera cabecera) {
 		em.merge(cabecera);
 	}

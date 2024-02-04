@@ -1,19 +1,39 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
+@Table(name="carrito")
 public class Carrito {
-	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int codigo;
-	private List<Producto> productos;
+	@OneToOne
 	private Persona persona;
+	@OneToMany(mappedBy = "carrito", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	//@Transient
+	//@JsonIgnore
+	@JsonManagedReference
+	List<Producto> producto;
+	
 	
 	public int getCodigo() {
 		return codigo;
@@ -28,14 +48,11 @@ public class Carrito {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
-	public List<Producto> getProductos() {
-		return productos;
+	public List<Producto> getProducto() {
+		return producto;
 	}
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
+	public void setProducto(List<Producto> producto) {
+		this.producto = producto;
 	}
-	
-	
-	
 	
 }

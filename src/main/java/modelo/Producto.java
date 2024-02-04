@@ -1,15 +1,21 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Producto implements Serializable{
@@ -30,7 +36,10 @@ public class Producto implements Serializable{
 	private Categoria categoria;
 	private String url;
 	private String descripcion;
-	
+	@ManyToOne
+    @JoinColumn(name = "carrito_id", nullable = true)
+	@JsonBackReference
+    private Carrito carrito;
 	public int getCodigo() {
 		return codigo;
 	}
@@ -80,10 +89,15 @@ public class Producto implements Serializable{
 		this.descripcion = descripcion;
 	}
 	
-	
-
-	
-	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public Carrito getCarrito() {
+		return carrito;
+	}
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
+	}
 	
 	
 	

@@ -9,7 +9,10 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import dao.CabeceraDAO;
+import dao.CarritoDAO;
 import dao.CategoriaDAO;
 import dao.DetalleDAO;
 import dao.PersonaDAO;
@@ -20,6 +23,7 @@ import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.inject.Inject;
 import modelo.Cabecera;
+import modelo.Carrito;
 import modelo.Categoria;
 import modelo.Detalle;
 import modelo.Persona;
@@ -38,6 +42,8 @@ public class GestionDatos {
 	private CategoriaDAO categoriaDAO;
 	@Inject
 	private CabeceraDAO cabeceraDAO;
+	@Inject
+	private CarritoDAO carritoDAO;
 	@Resource(lookup = "java:/MySqlDS")
     private DataSource dataSource;
 	
@@ -63,6 +69,25 @@ public class GestionDatos {
 		 persona.setCorreo("eduardomaldonado2003ortiz");
 		 persona.setContra("jiji");
 		 personaDAO.insert(persona);
+		 
+		 Persona persona2 = new Persona();
+		 //persona.setCodigo(1);
+		 persona2.setCedula("0150517241");
+		 persona2.setApellido("Maldonado");
+		 persona2.setNombre("Zoila");
+		 persona2.setDireccion("El Arenal");
+		 persona2.setTelefono("0994030867");
+		 persona2.setCorreo("bea76");
+		 persona2.setContra("jiji");
+		 personaDAO.insert(persona2);
+		 
+		 Carrito carrito = new Carrito();
+		 carrito.setPersona(persona);
+		 carritoDAO.insert(carrito);
+		 
+		 Carrito carrito2 = new Carrito();
+		 carrito2.setPersona(persona2);
+		 carritoDAO.insert(carrito2);
 		 
 		 Categoria categoria = new Categoria();
 		 categoria.setNombre("PC Gamer");
@@ -96,7 +121,12 @@ public class GestionDatos {
 		 producto.setUrl("https://th.bing.com/th/id/OIP.o4FDR9jMpahxfSa3-9l4FAHaDn?w=315&h=180&c=7&r=0&o=5&pid=1.7");
 		 producto.setDescripcion("The GeForce RTX 3080 delivers the ultra-performance that gamers crave, powered by Ampere—NVIDIA's 2nd gen .");
 		 producto.setCategoria(categoria);
+		 producto.setCarrito(carrito);
+		 System.out.println(producto.getCarrito() + "--------ATENTO A ESTA VRG-------");
 		 productoDAO.insert(producto);
+		 
+		
+
 		 
 		 Producto producto2 = new Producto();
 		 producto2.setNombre("Serum");
@@ -106,6 +136,7 @@ public class GestionDatos {
 		 producto2.setUrl("https://th.bing.com/th/id/OIP.AysL-rn6B8EWv2BkCTDBfAHaIa?w=190&h=216&c=7&r=0&o=5&pid=1.7");
 		 producto2.setDescripcion("La palabra sérum, deriva de la palabra serum en inglés, que significa suero. Y es un concentrado de ingredientes activos, el cual se ha convertido en el complemento perfecto a nuestra rutina de belleza diaria.");
 		 producto2.setCategoria(categoria2);
+		 
 		 productoDAO.insert(producto2);
 		 
 		 Producto producto3 = new Producto();
@@ -116,6 +147,7 @@ public class GestionDatos {
 		 producto3.setUrl("https://th.bing.com/th/id/OIP.BBjeLwCpYb22yGXbVwO6ugHaHa?w=185&h=184&c=7&r=0&o=5&pid=1.7");
 		 producto3.setDescripcion("El iPhone 14 cuenta con sistemas GSM, CDMA, HSPA, EVDO, LTE, 5G1. La fecha de presentación es Septiembre 07 2022");
 		 producto3.setCategoria(categoria3);
+		
 		 productoDAO.insert(producto3);
 		 
 		 Producto producto4 = new Producto();
@@ -126,6 +158,7 @@ public class GestionDatos {
 		 producto4.setUrl("https://th.bing.com/th/id/OIP.A90vvrmKvPlt_1kIE7b-VQHaHa?w=201&h=201&c=7&r=0&o=5&pid=1.7");
 		 producto4.setDescripcion("la cocina es el sitio en el cual se prepara la comida. Puede ser el ambiente dedicado a esa tarea en un hogar o el espacio específico en un restaurante,");
 		 producto4.setCategoria(categoria4);
+		 
 		 productoDAO.insert(producto4);
 		 
 		 Producto producto5 = new Producto();
@@ -136,6 +169,7 @@ public class GestionDatos {
 		 producto5.setUrl("https://th.bing.com/th/id/OIP.exvsscV6FWlr-TjFuvyp-QHaFu?w=242&h=186&c=7&r=0&o=5&pid=1.7");
 		 producto5.setDescripcion("Zapato es un término que proviene de zabata, un vocablo de la lengua turca. Un zapato es una pieza de calzado que protege al pie, brindándole comodidad a la persona");
 		 producto5.setCategoria(categoria5);
+		 //producto5.setCarrito(carrito2);
 		 productoDAO.insert(producto5);
 		 
 		 Producto producto6 = new Producto();
@@ -168,6 +202,7 @@ public class GestionDatos {
 		 List<Detalle> lDet = new ArrayList<>();
 		 detalleDAO.insert(detalle);
 		 
+		 
 		 System.out.println("-------CLIENTE---------");
 		 List<Persona> l = personaDAO.getAll();
 		 for (Persona per : l){
@@ -179,6 +214,13 @@ public class GestionDatos {
 		for(Cabecera c : s) {
 			System.out.println(c.getPersona().getApellido() + c.getTotal());
 		}
+		
+		System.out.println("-------CARRITO-------");
+		List<Carrito> c = carritoDAO.getAll();
+		for(Carrito m : c) {
+			System.out.println(m.getProducto());
+		}
+		
 	    }
 	
 }

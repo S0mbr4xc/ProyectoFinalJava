@@ -1,12 +1,15 @@
 package business;
 
+import java.util.Date;
 import java.util.List;
 
 import dao.CabeceraDAO;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import modelo.Cabecera;
+import modelo.Carrito;
 import modelo.Producto;
+import modelo.Detalle;
 
 @Stateless
 public class GestionCabeceras {
@@ -41,5 +44,6 @@ public class GestionCabeceras {
 		return cabeceraDAO.getAll();
 		
 	}
-
+	
+	 
 }

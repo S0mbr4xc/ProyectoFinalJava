@@ -6,6 +6,7 @@ import dao.CarritoDAO;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import modelo.Carrito;
+import modelo.Persona;
 import modelo.Producto;
 
 @Stateless
@@ -32,24 +33,30 @@ public class GestionCarrito {
 		return carritoDAO.getAll();
 	}
 	
-	public void agregarProductos(Producto producto, int codigoCarrito) {
-		Carrito carrito = carritoDAO.read(codigoCarrito);
+	public List<Producto> obtenerProductos(int codigoCarrito){
+		List <Producto> lista = carritoDAO.obtenerProductosDeCarrito(codigoCarrito);
+		return lista;
 		
-		if(carrito != null) {
-			List<Producto> productos = carrito.getProductos();
-			productos.add(producto);
-			carrito.setProductos(productos);
-			carritoDAO.update(carrito);
-		}
 	}
 	
-	 public void eliminarProductoDelCarrito(int codigoCarrito, Producto producto) {
+	public Producto agregarProductos(Producto producto, int codigoCarrito) {
+	    Carrito carrito = carritoDAO.read(codigoCarrito);
+
+	    if (carrito != null) {
+	        producto.setCarrito(carrito);
+	        carritoDAO.agregarProductos(producto, codigoCarrito); // Asegúrate de ajustar este método en CarritoDAO
+	        return producto;
+	    }
+	    return null; // Manejar el caso en que no se encuentra el carrito
+	}
+
+	public void eliminarProductoDelCarrito(int codigoCarrito, Producto producto) {
 	        Carrito carrito = carritoDAO.read(codigoCarrito);
 
 	        if (carrito != null) {
-	            List<Producto> productos = carrito.getProductos();
+	            List<Producto> productos = carrito.getProducto();
 	            productos.remove(producto);
-	            carrito.setProductos(productos);
+	            carrito.setProducto(productos);
 	            carritoDAO.update(carrito);
 	        }
 	    }
@@ -58,8 +65,16 @@ public class GestionCarrito {
 	        Carrito carrito = carritoDAO.read(codigoCarrito);
 
 	        if (carrito != null) {
-	            carrito.setProductos(null);
+	            carrito.setProducto(null);
 	            carritoDAO.update(carrito);
 	        }
 	    }
+	 
+	 public Carrito obtenerCarritoPersona(String correo) {
+		 return carritoDAO.obtenerCarritoPersona(correo);
+	 }
+	 
+	 public Carrito obtenerCarritoPorPersona(int codigo) {
+		 return carritoDAO.obtenerCarritoPorCodigoPersona(codigo);
+	 }
 }
