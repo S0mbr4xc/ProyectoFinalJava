@@ -36,10 +36,7 @@ public class Producto implements Serializable{
 	private Categoria categoria;
 	private String url;
 	private String descripcion;
-	@ManyToOne
-    @JoinColumn(name = "carrito_id", nullable = true)
-	@JsonBackReference
-    private Carrito carrito;
+	
 	public int getCodigo() {
 		return codigo;
 	}
@@ -91,12 +88,6 @@ public class Producto implements Serializable{
 	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-	public Carrito getCarrito() {
-		return carrito;
-	}
-	public void setCarrito(Carrito carrito) {
-		this.carrito = carrito;
 	}
 	
 	

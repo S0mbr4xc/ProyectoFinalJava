@@ -85,7 +85,7 @@ public class CarritoDAO {
 	    }
 	}
 	
-	public Producto agregarProductos(Producto producto, int codigoCarrito) {
+	/*public Producto agregarProductos(Producto producto, int codigoCarrito) {
 	    Carrito carrito = em.find(Carrito.class, codigoCarrito);
 
 	    if (carrito != null) {
@@ -97,7 +97,7 @@ public class CarritoDAO {
 	        return producto;
 	    }
 	    return null; // Manejar el caso en que no se encuentra el carrito
-	}
+	}*/
 
 
 

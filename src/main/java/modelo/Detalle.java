@@ -3,6 +3,9 @@ package modelo;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,8 +37,11 @@ public class Detalle implements Serializable{
 	@ManyToOne
     @JoinColumn(name = "cabecera_id", nullable = true)
     private Cabecera cabecera;
-
-	
+	@ManyToOne
+    @JoinColumn(name = "carrito_id", nullable = true)
+	//@JsonBackReference
+	@JsonIgnore
+    private Carrito carrito;
 	public int getCodigo() {
 		return codigo;
 	}
@@ -72,10 +78,6 @@ public class Detalle implements Serializable{
 	public void setTotal(double total) {
 		this.total = total;
 	}
-	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	public Producto getProducto() {
 		return producto;
 	}
@@ -88,7 +90,15 @@ public class Detalle implements Serializable{
 	public void setCabecera(Cabecera cabecera) {
 		this.cabecera = cabecera;
 	}
-	
+	public Carrito getCarrito() {
+		return carrito;
+	}
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 	
 	

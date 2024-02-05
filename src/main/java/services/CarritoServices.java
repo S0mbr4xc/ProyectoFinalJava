@@ -52,7 +52,7 @@ public class CarritoServices {
 				.build();
 	}
 	
-	@POST
+	/*@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("agregar-producto/{codigoCarrito}")
 	public Response agregarProductoACarrito(Producto producto, @PathParam("codigoCarrito") int codigoCarrito) {
@@ -69,7 +69,7 @@ public class CarritoServices {
 	        ErrorMessage em = new ErrorMessage(500, "Error interno del servidor");
 	        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(em).build();
 	    }
-	}
+	}*/
 
 	
 }

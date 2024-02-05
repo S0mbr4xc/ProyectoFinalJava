@@ -121,8 +121,6 @@ public class GestionDatos {
 		 producto.setUrl("https://th.bing.com/th/id/OIP.o4FDR9jMpahxfSa3-9l4FAHaDn?w=315&h=180&c=7&r=0&o=5&pid=1.7");
 		 producto.setDescripcion("The GeForce RTX 3080 delivers the ultra-performance that gamers crave, powered by Ampere—NVIDIA's 2nd gen .");
 		 producto.setCategoria(categoria);
-		 producto.setCarrito(carrito);
-		 System.out.println(producto.getCarrito() + "--------ATENTO A ESTA VRG-------");
 		 productoDAO.insert(producto);
 		 
 		
@@ -199,6 +197,7 @@ public class GestionDatos {
 		 detalle.setTotal(212.12);
 		 detalle.setProducto(producto);
 		 detalle.setCabecera(cabecera);
+		 detalle.setCarrito(carrito);
 		 List<Detalle> lDet = new ArrayList<>();
 		 detalleDAO.insert(detalle);
 		 
@@ -215,11 +214,8 @@ public class GestionDatos {
 			System.out.println(c.getPersona().getApellido() + c.getTotal());
 		}
 		
-		System.out.println("-------CARRITO-------");
-		List<Carrito> c = carritoDAO.getAll();
-		for(Carrito m : c) {
-			System.out.println(m.getProducto());
-		}
+		
+		
 		
 	    }
 	

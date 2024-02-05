@@ -39,7 +39,7 @@ public class GestionCarrito {
 		
 	}
 	
-	public Producto agregarProductos(Producto producto, int codigoCarrito) {
+	/*public Producto agregarProductos(Producto producto, int codigoCarrito) {
 	    Carrito carrito = carritoDAO.read(codigoCarrito);
 
 	    if (carrito != null) {
@@ -61,7 +61,7 @@ public class GestionCarrito {
 	        }
 	    }
 	
-	 public void vaciarCarrito(int codigoCarrito) {
+	 /*public void vaciarCarrito(int codigoCarrito) {
 	        Carrito carrito = carritoDAO.read(codigoCarrito);
 
 	        if (carrito != null) {
@@ -69,7 +69,7 @@ public class GestionCarrito {
 	            carritoDAO.update(carrito);
 	        }
 	    }
-	 
+	 */
 	 public Carrito obtenerCarritoPersona(String correo) {
 		 return carritoDAO.obtenerCarritoPersona(correo);
 	 }

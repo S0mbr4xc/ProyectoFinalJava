@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,6 +37,7 @@ public class Cabecera implements Serializable {
 	@JoinColumn(name="persona_id", nullable = true)
 	private Persona persona;
 	@OneToMany(mappedBy = "cabecera", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore
     private List<Detalle> detalle;
 	
 	

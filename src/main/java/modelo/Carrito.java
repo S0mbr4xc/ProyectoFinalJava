@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -29,10 +30,8 @@ public class Carrito {
 	@OneToOne
 	private Persona persona;
 	@OneToMany(mappedBy = "carrito", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	//@Transient
-	//@JsonIgnore
-	@JsonManagedReference
-	List<Producto> producto;
+	@JsonIgnoreProperties("detalle")
+	List<Detalle> detalle;
 	
 	
 	public int getCodigo() {
@@ -48,11 +47,12 @@ public class Carrito {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
-	public List<Producto> getProducto() {
-		return producto;
+	public List<Detalle> getDetalle() {
+		return detalle;
 	}
-	public void setProducto(List<Producto> producto) {
-		this.producto = producto;
+	public void setDetalle(List<Detalle> detalle) {
+		this.detalle = detalle;
 	}
+	
 	
 }
