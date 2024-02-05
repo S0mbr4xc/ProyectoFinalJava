@@ -53,11 +53,8 @@ public class CarritoDAO {
 	    try {
 	        return query.getSingleResult();
 	    } catch (NoResultException e) {
-	        return null; // Manejar el caso en que no se encuentre ningún carrito
-	    } catch (NonUniqueResultException e) {
-	        // Manejar el caso en que hay múltiples carritos asociados a la persona
-	        // Dependiendo de la lógica de tu aplicación, podrías devolver el primero, lanzar una excepción, etc.
-	        return query.getResultList().get(0);
+	        System.out.println("NO ESTA ESE CORREO");
+	        return query.getSingleResult();
 	    }
 	}
 	
@@ -85,21 +82,5 @@ public class CarritoDAO {
 	    }
 	}
 	
-	/*public Producto agregarProductos(Producto producto, int codigoCarrito) {
-	    Carrito carrito = em.find(Carrito.class, codigoCarrito);
-
-	    if (carrito != null) {
-	        List<Producto> productos = carrito.getProducto();
-	        
-	        carrito.setProducto(productos);
-	        em.merge(carrito);
-	        em.flush();
-	        return producto;
-	    }
-	    return null; // Manejar el caso en que no se encuentra el carrito
-	}*/
-
-
-
-
+	
 }

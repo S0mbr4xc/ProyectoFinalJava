@@ -52,24 +52,36 @@ public class CarritoServices {
 				.build();
 	}
 	
-	/*@POST
+	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("agregar-producto/{codigoCarrito}")
-	public Response agregarProductoACarrito(Producto producto, @PathParam("codigoCarrito") int codigoCarrito) {
+	@Path("agregar-producto/{codigo}")
+	public Response agregarProductoACarrito(Producto producto, @PathParam("codigo") int codigo) {
 	    try {
-	        Producto productoAgregado = gestionCarrito.agregarProductos(producto, codigoCarrito);
-
-	        if (productoAgregado != null) {
-	            return Response.ok(productoAgregado).build();
-	        } else {
-	            ErrorMessage em = new ErrorMessage(88, "No se encuentra el carrito");
-	            return Response.status(Response.Status.NOT_FOUND).entity(em).build();
-	        }
+	        gestionCarrito.agregarProductoACarrito(producto, codigo);
+	        return Response.ok("Producto agregado al carrito exitosamente.").build();
 	    } catch (Exception e) {
-	        ErrorMessage em = new ErrorMessage(500, "Error interno del servidor");
-	        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(em).build();
+	        ErrorMessage eS = new ErrorMessage(63, "Error al agregar el producto al carrito: " + e.getMessage());
+	        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+	                .entity(eS)
+	                .build();
 	    }
-	}*/
+	}
 
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("xd/{codigo}")
+	public Response obtenerCarritoPersonaCorreo(@PathParam("codigo") int codigo) {
+		Carrito carrito = gestionCarrito.obtenerCarritoPorPersona(codigo);
+		if (carrito != null) {
+			return Response.ok(carrito).build();
+		}else {
+			ErrorMessage em = new ErrorMessage(88, "No se encuentra el cliente en el carrito ESTOY EN EL OTRO");
+			return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity(em)
+                    .build();
+		}
+	}
+	
 	
 }

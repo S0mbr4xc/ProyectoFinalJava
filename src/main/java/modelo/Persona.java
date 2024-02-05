@@ -31,6 +31,9 @@ public class Persona implements Serializable{
 	private String correo;
 	@Column(name="contra", length = 60, nullable = false)
 	private String contra;
+	
+	
+	
 	public int getCodigo() {
 		return codigo;
 	}

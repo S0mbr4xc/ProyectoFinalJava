@@ -3,17 +3,23 @@ package business;
 import java.util.List;
 
 import dao.CarritoDAO;
+import dao.PersonaDAO;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.core.Response;
 import modelo.Carrito;
+import modelo.Detalle;
 import modelo.Persona;
 import modelo.Producto;
+import services.ErrorMessage;
 
 @Stateless
 public class GestionCarrito {
 	
 	@Inject
 	private CarritoDAO carritoDAO;
+	@Inject
+	private PersonaDAO personaDAO;
 	
 	public void guardarCarrito(Carrito carrito) {
 		Carrito car = carritoDAO.read(carrito.getCodigo());
@@ -77,4 +83,44 @@ public class GestionCarrito {
 	 public Carrito obtenerCarritoPorPersona(int codigo) {
 		 return carritoDAO.obtenerCarritoPorCodigoPersona(codigo);
 	 }
+	 
+	 public void agregarProductoACarrito(Producto producto, int codigo) {
+		    try {
+		        // Paso 1: Obtén el carrito asociado al cliente mediante su correo.
+		        Carrito carrito = carritoDAO.obtenerCarritoPorCodigoPersona(codigo);
+		        System.out.println(carrito.getPersona().getNombre() + "---------------OJO EN ESTA VERGA--------------");
+		        if (carrito != null) {
+		            // Paso 2: Crea un nuevo detalle.
+		            Detalle detalle = new Detalle();
+
+		            // Paso 3: Asigna el producto al detalle.
+		            detalle.setProducto(producto);
+		            detalle.setCarrito(carrito);
+
+		            // Paso 4: Asigna el cliente al carrito (si aún no está asignado).
+		            if (carrito.getPersona() == null) {
+		                Persona cliente = personaDAO.obtenerPorCodigo(codigo);
+		                carrito.setPersona(cliente);
+		            }
+
+		            // Paso 5: Agrega el detalle al carrito.
+		            List<Detalle> detalles = carrito.getDetalle();
+		            detalles.add(detalle);
+		            carrito.setDetalle(detalles);
+
+		            // Actualiza el carrito en la base de datos
+		            carritoDAO.update(carrito);
+
+		            System.out.println("Producto agregado al carrito exitosamente.");
+		        } else {
+		            System.out.println("No se encuentra el carrito");
+		            // Puedes manejar la lógica de negocio aquí, lanzar excepciones, etc.
+		        }
+		    } catch (Exception e) {
+		        System.out.println("Error interno del servidor: " + e.getMessage());
+		        e.printStackTrace();
+		        // Puedes manejar la excepción según tus necesidades
+		    }
+		}
+
 }
