@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,10 +35,10 @@ public class Detalle implements Serializable{
 	@OneToOne
 	@JoinColumn(name="producto_id")
 	private Producto producto;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cabecera_id", nullable = true)
     private Cabecera cabecera;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "carrito_id", nullable = true)
 	//@JsonBackReference
 	@JsonIgnore

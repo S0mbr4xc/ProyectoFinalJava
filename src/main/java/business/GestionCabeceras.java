@@ -45,5 +45,8 @@ public class GestionCabeceras {
 		
 	}
 	
+	public void agregarCabeceras() {
+		
+	}
 	 
 }

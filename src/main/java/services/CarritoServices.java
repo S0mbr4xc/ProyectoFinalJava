@@ -11,6 +11,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import modelo.Cabecera;
 import modelo.Carrito;
 import modelo.Persona;
 import modelo.Producto;
@@ -81,6 +82,25 @@ public class CarritoServices {
                     .entity(em)
                     .build();
 		}
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("cabeceraAdd/{codigo}")
+	public Response agregarCabecera(@PathParam("codigo") int codigo, Cabecera cabecera) {
+	    Carrito carrito = gestionCarrito.obtenerCarritoPorPersona(codigo);
+
+	    if (carrito != null) {
+	        // Establecer la cabecera en los detalles del carrito
+	        gestionCarrito.establecerCabeceraEnDetalles(cabecera, codigo);
+
+	        return Response.ok(carrito).build();
+	    } else {
+	        ErrorMessage em = new ErrorMessage(55, "ERROR AL SETEAR");
+	        return Response.status(Response.Status.UNAUTHORIZED)
+	                .entity(em)
+	                .build();
+	    }
 	}
 	
 	

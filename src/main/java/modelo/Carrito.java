@@ -27,13 +27,11 @@ public class Carrito {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int codigo;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Persona persona;
 	@OneToMany(mappedBy = "carrito", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("detalle")
 	List<Detalle> detalle;
-	
-	 
 	
 	
 	public int getCodigo() {

@@ -33,7 +33,7 @@ public class Cabecera implements Serializable {
 	private double subtotal;
 	private double iva;
 	private double total;
-	@OneToOne
+	@OneToOne()
 	@JoinColumn(name="persona_id", nullable = true)
 	private Persona persona;
 	@OneToMany(mappedBy = "cabecera", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

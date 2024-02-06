@@ -27,6 +27,10 @@ public class DetalleDAO {
 		em.remove(detalle);
 	}
 	
+	public void updateAll(List<Detalle> det) {
+		em.merge(det);
+	}
+	
 	public Detalle read(int codigo) {
 		Detalle detalle = em.find(Detalle.class, codigo);
 		return detalle;

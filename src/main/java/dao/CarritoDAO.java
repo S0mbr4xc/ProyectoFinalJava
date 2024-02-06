@@ -10,6 +10,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import modelo.Carrito;
+import modelo.Detalle;
 import modelo.Persona;
 import modelo.Producto;
 
@@ -25,6 +26,10 @@ public class CarritoDAO {
 	
 	public void update(Carrito carrito) {
 		em.merge(carrito);
+	}
+	
+	public void updateAll(List<Detalle> det) {
+		em.merge(det);
 	}
 	
 	public void remove(int codigo) {

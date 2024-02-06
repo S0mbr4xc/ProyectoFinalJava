@@ -180,7 +180,6 @@ public class GestionDatos {
 		 producto6.setCategoria(categoria6);
 		 productoDAO.insert(producto6);
 		 
-		 
 		 /*Cabecera cabecera = new Cabecera();
 		 cabecera.setFecha(new Date());
 		 cabecera.setIva(2.12);
@@ -196,11 +195,11 @@ public class GestionDatos {
 		 detalle.setSubtotal(102.12);
 		 detalle.setTotal(212.12);
 		 detalle.setProducto(producto);
-		 detalle.setCabecera(cabecera);
+		 //detalle.setCabecera(cabecera);
 		 detalle.setCarrito(carrito);
 		 List<Detalle> lDet = new ArrayList<>();
-		 detalleDAO.insert(detalle);
-		 */
+		 detalleDAO.insert(detalle);*/
+		 
 		 
 		 System.out.println("-------CLIENTE---------");
 		 List<Persona> l = personaDAO.getAll();
