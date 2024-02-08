@@ -118,5 +118,20 @@ public class CarritoServices {
 	    }
 	}
 	
+	 @GET
+	    @Produces(MediaType.APPLICATION_JSON)
+	    @Path("sumar-detalles-cabecera/{idCabecera}")
+	    public Response sumarDetallesCabecera(@PathParam("idCabecera") int idCabecera) {
+	        try {
+	            double[] valoresSumados = gestionCarrito.sumarDetallesCabecera(idCabecera);
+	            return Response.ok(valoresSumados).build();
+	        } catch (Exception e) {
+	            ErrorMessage em = new ErrorMessage(500, "Error al sumar los detalles de la cabecera: " + e.getMessage());
+	            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+	                    .entity(em)
+	                    .build();
+	        }
+	    }
+	
 	
 }

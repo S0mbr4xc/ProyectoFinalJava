@@ -141,40 +141,38 @@ public class GestionCarrito {
 		        System.out.println("CODIGOOOOOOOOOOOOOOOOOOO" + carrito.getCodigo());
 		        Persona persona = personaDAO.obtenerPorCodigo(codigoPersona);
 		        System.out.println("CODIGOOOOOOOOOOOOOOOOOOO" + persona.getNombre());
-		        if (carrito.getPersona() != null) {
-		            // Paso 2: Obtén la lista de detalles en el carrito.
+		        
+		        // Verificar si el carrito y la persona existen
+		        if (carrito != null && persona != null) {
+		            // Crear una nueva instancia de cabecera
+		            Cabecera cabecera = new Cabecera();
+		            cabecera.setFecha(new Date());
+		            cabecera.setPersona(persona);
+		            cabecera.setSubtotal(0); // Debes implementar este cálculo según tus necesidades
+		            cabecera.setIva(0); // Debes implementar este cálculo según tus necesidades
+		            cabecera.setTotal(0); // Debes implementar este cálculo según tus necesidades
+		            
+		            // Obtener la lista de detalles en el carrito
 		            List<Detalle> detalles = carrito.getDetalle();
 		            
-		            // Actualizar el stock del producto después de asignar la cabecera a todos los detalles
+		            // Asignar la misma cabecera a todos los detalles
 		            for (Detalle detalle : detalles) {
-		            	if(detalle.getCabecera() == null) {
-		                Cabecera cabecera = new Cabecera(); // Crea una nueva cabecera para cada detalle
-		                cabeceraDAO.insert(cabecera);
-		                cabecera.setFecha(new Date());
-		                //cabecera.setPersona(persona);
-		                cabecera.setSubtotal(0); // Implementa este método según necesites
-		                cabecera.setIva(0); // Implementa este método según necesites
-		                cabecera.setTotal(0);
-		                // Implementa este método según necesites
-		                
 		                detalle.setCabecera(cabecera);
-		                detalle.setCarrito(null);
-		                detalle.getCabecera().setPersona(persona);
 		                
+		                // Actualizar el stock del producto después de asignar la cabecera a todos los detalles
 		                detalle.getProducto().setStock(detalle.getProducto().getStock() - detalle.getCantidad());
-		            	}
 		                
 		                // Luego puedes guardar los detalles actualizados en la base de datos
-		                //detalleDAO.update(detalle);
+		                // detalleDAO.update(detalle);
 		            }
-
-		            // Paso 5: Actualiza el carrito en la base de datos.
+		            
+		            // Actualizar el carrito en la base de datos
 		            carrito.setPersona(null);
 		            carritoDAO.update(carrito);
 
 		            System.out.println("Cabecera asignada a los detalles exitosamente.");
 		        } else {
-		            System.out.println("No se encuentra el carrito");
+		            System.out.println("No se encuentra el carrito o la persona.");
 		            // Puedes manejar la lógica de negocio aquí, lanzar excepciones, etc.
 		        }
 		    } catch (Exception e) {
@@ -183,8 +181,6 @@ public class GestionCarrito {
 		        // Puedes manejar la excepción según tus necesidades
 		    }
 		}
-
-
 
 
 	 public void eliminarCarrito(int codigoCarrito) {
@@ -205,8 +201,32 @@ public class GestionCarrito {
 		        // Puedes manejar la excepción según tus necesidades
 		    }
 		}
-
 	 
-	
+	 public double[] sumarDetallesCabecera(int idCabecera) {
+		    // Obtener los detalles de la cabecera
+		    List<Detalle> detalles = detalleDAO.obtenerDetallesPorCabeceraId(idCabecera);
+
+		    double ivaTotal = 0;
+		    double subtotalTotal = 0;
+		    double totalTotal = 0;
+
+		    // Iterar sobre los detalles y sumar los valores
+		    for (Detalle detalle : detalles) {
+		        // Sumar el IVA, subtotal y total del detalle actual a los totales
+		        ivaTotal += detalle.getIva();
+		        subtotalTotal += detalle.getSubtotal();
+		        totalTotal += detalle.getTotal();
+		        Cabecera cabecera = detalle.getCabecera();
+		        cabecera.setSubtotal(subtotalTotal);
+		        cabecera.setIva(ivaTotal);
+		        cabecera.setTotal(totalTotal);
+		    }
+		    
+		    
+
+		    // Retornar un arreglo con los valores sumados
+		    return new double[]{ivaTotal, subtotalTotal, totalTotal};
+		}
+
 
 }
