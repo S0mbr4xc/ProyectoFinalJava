@@ -55,8 +55,9 @@ public class GestionDetalles {
 		            
 
 		            if(detalle.getCodigo() == detalleId) {
-		            	 	double iva = producto.getPrecio() * 0.12;
-				            double subtotal = producto.getPrecio() + iva;
+		            	 	
+				            double subtotal = producto.getPrecio();
+				            double iva = subtotal * 0.12;
 				            double total = cantidad   * subtotal;
 				            
 

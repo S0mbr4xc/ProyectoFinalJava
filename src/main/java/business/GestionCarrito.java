@@ -188,7 +188,7 @@ public class GestionCarrito {
 		        // Busca el carrito por su código
 		        Carrito carrito = carritoDAO.obtenerCarritoPorCodigoPersona(codigoCarrito);
 		        
-		        // Si el carrito existe, elimínalo de la base de datos
+		        
 		        if (carrito != null) {
 		            carritoDAO.remove(codigoCarrito);
 		            System.out.println("Carrito eliminado correctamente de la base de datos.");
@@ -198,24 +198,24 @@ public class GestionCarrito {
 		    } catch (Exception e) {
 		        System.out.println("Error al intentar eliminar el carrito de la base de datos: " + e.getMessage());
 		        e.printStackTrace();
-		        // Puedes manejar la excepción según tus necesidades
+		        
 		    }
 		}
 	 
 	 public double[] sumarDetallesCabecera(int idCabecera) {
-		    // Obtener los detalles de la cabecera
+		    
 		    List<Detalle> detalles = detalleDAO.obtenerDetallesPorCabeceraId(idCabecera);
 
 		    double ivaTotal = 0;
 		    double subtotalTotal = 0;
 		    double totalTotal = 0;
 
-		    // Iterar sobre los detalles y sumar los valores
+		    
 		    for (Detalle detalle : detalles) {
-		        // Sumar el IVA, subtotal y total del detalle actual a los totales
+		        
 		        ivaTotal += detalle.getIva();
-		        subtotalTotal += detalle.getSubtotal();
-		        totalTotal += detalle.getTotal();
+		        subtotalTotal += detalle.getTotal();
+		        totalTotal = subtotalTotal+ivaTotal;
 		        Cabecera cabecera = detalle.getCabecera();
 		        cabecera.setSubtotal(subtotalTotal);
 		        cabecera.setIva(ivaTotal);
@@ -224,7 +224,7 @@ public class GestionCarrito {
 		    
 		    
 
-		    // Retornar un arreglo con los valores sumados
+		    
 		    return new double[]{ivaTotal, subtotalTotal, totalTotal};
 		}
 
