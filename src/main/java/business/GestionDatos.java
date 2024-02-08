@@ -81,13 +81,13 @@ public class GestionDatos {
 		 persona2.setContra("jiji");
 		 personaDAO.insert(persona2);
 		 
-		 Carrito carrito = new Carrito();
+		 /*Carrito carrito = new Carrito();
 		 carrito.setPersona(persona);
 		 carritoDAO.insert(carrito);
 		 
 		 Carrito carrito2 = new Carrito();
 		 carrito2.setPersona(persona2);
-		 carritoDAO.insert(carrito2);
+		 carritoDAO.insert(carrito2);*/
 		 
 		 Categoria categoria = new Categoria();
 		 categoria.setNombre("PC Gamer");

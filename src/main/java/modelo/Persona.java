@@ -1,12 +1,14 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Persona implements Serializable{
@@ -31,6 +33,8 @@ public class Persona implements Serializable{
 	private String correo;
 	@Column(name="contra", length = 60, nullable = false)
 	private String contra;
+	@OneToMany
+	private List<Cabecera> cabeceras;
 	
 	
 	

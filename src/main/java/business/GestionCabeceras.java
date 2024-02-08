@@ -45,7 +45,7 @@ public class GestionCabeceras {
 		
 	}
 	
-	public void agregarCabeceras() {
+	public void getCabeceraPor() {
 		
 	}
 	 

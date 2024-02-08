@@ -86,18 +86,33 @@ public class CarritoServices {
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("cabeceraAdd/{codigo}")
-	public Response agregarCabecera(@PathParam("codigo") int codigo, Cabecera cabecera) {
+	@Path("cabeceraAdd/{codigo}/{codigoPersona}")
+	public Response agregarCabecera(@PathParam("codigo") int codigo, @PathParam("codigoPersona") int codigoPersona) {
 	    Carrito carrito = gestionCarrito.obtenerCarritoPorPersona(codigo);
 
 	    if (carrito != null) {
 	        // Establecer la cabecera en los detalles del carrito
-	        gestionCarrito.establecerCabeceraEnDetalles(cabecera, codigo);
+	        gestionCarrito.establecerCabeceraEnDetalles( codigo, codigoPersona);
 
 	        return Response.ok(carrito).build();
 	    } else {
 	        ErrorMessage em = new ErrorMessage(55, "ERROR AL SETEAR");
 	        return Response.status(Response.Status.UNAUTHORIZED)
+	                .entity(em)
+	                .build();
+	    }
+	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("eliminar-carrito/{codigo}")
+	public Response eliminarCarrito(@PathParam("codigo") int codigoCarrito) {
+	    try {
+	        gestionCarrito.eliminarCarrito(codigoCarrito);
+	        return Response.ok("Carrito eliminado correctamente.").build();
+	    } catch (Exception e) {
+	        ErrorMessage em = new ErrorMessage(100, "Error al eliminar el carrito: " + e.getMessage());
+	        return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
 	                .entity(em)
 	                .build();
 	    }

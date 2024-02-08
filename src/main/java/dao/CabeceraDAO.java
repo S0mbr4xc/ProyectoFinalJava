@@ -16,10 +16,6 @@ public class CabeceraDAO {
 	
 	 public void insert(Cabecera cabecera) {
 	        
-	        if (cabecera.getDetalle() != null) {
-	            cabecera.getDetalle().forEach(detalle -> detalle.setCabecera(cabecera));
-	        }
-
 	        em.persist(cabecera);
 	    }
 	public void update(Cabecera cabecera) {

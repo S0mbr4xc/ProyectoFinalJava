@@ -32,7 +32,7 @@ public class Detalle implements Serializable{
 	private double subtotal;
 	private double iva;
 	private double total;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="producto_id")
 	private Producto producto;
 	@ManyToOne(cascade = CascadeType.ALL)

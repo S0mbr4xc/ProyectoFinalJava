@@ -87,5 +87,35 @@ public class CarritoDAO {
 	    }
 	}
 	
+	public void actualizarDetalles(List<Detalle> detalles, int cantidad) {
+        try {
+            // Itera sobre cada detalle en la lista
+            for (Detalle detalle : detalles) {
+                // Actualiza los valores de IVA, subtotal y total en el detalle
+                double iva = detalle.getIva();
+                double subtotal = detalle.getSubtotal();
+                double total = detalle.getTotal();
+                
+                
+
+                // Actualiza los valores en el objeto detalle
+                detalle.setIva(iva);
+                detalle.setSubtotal(subtotal);
+                detalle.setTotal(total);
+                
+                // Actualiza el detalle en la base de datos
+                em.merge(detalle);
+            }
+            System.out.println("Detalles actualizados correctamente en la base de datos.");
+        } catch (Exception e) {
+            System.out.println("Error al actualizar los detalles en la base de datos: " + e.getMessage());
+            e.printStackTrace();
+            // Puedes manejar la excepción según tus necesidades
+        }
+    }
+	
+	
+
+	
 	
 }
