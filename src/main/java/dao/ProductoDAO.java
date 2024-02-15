@@ -38,5 +38,12 @@ public class ProductoDAO {
 		Query q = em.createQuery(jpql, Producto.class);
 		return q.getResultList();
 	}
+	
+	public List<Producto> getProdCat(int num){
+		String jpql = "SELECT p FROM Producto p WHERE categoria_id = :num";
+		Query q = em.createQuery(jpql, Producto.class);
+		q.setParameter("num", num);
+		return q.getResultList();
+	}
 
 }

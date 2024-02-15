@@ -38,7 +38,9 @@ public class GestionProductos {
 	
 	public List<Producto> getProductos(){
 		return productoDAO.getAll();
-		
 	}
 	
+	public List<Producto> getProCat(int num){
+		return productoDAO.getProdCat(num);
+	}
 }
